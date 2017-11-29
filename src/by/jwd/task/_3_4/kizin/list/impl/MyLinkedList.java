@@ -1,6 +1,8 @@
 package by.jwd.task._3_4.kizin.list.impl;
 import by.jwd.task._3_4.kizin.list.MyList;
 
+import java.util.Iterator;
+
 public class MyLinkedList<E> implements MyList<E>{
 
     private Node<E> first;
@@ -63,6 +65,11 @@ public class MyLinkedList<E> implements MyList<E>{
     @Override
     public int size() {
         return this.size;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return null;
     }
 
     @Override

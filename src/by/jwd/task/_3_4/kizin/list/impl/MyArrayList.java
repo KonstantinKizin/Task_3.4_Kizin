@@ -2,7 +2,8 @@ package by.jwd.task._3_4.kizin.list.impl;
 import by.jwd.task._3_4.kizin.list.MyList;
 
 import java.util.Arrays;
-
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 
 public class MyArrayList<E> implements MyList<E> {
@@ -79,4 +80,27 @@ public class MyArrayList<E> implements MyList<E> {
         }
 
     }
+
+  @Override
+  public Iterator<E> iterator(){
+
+        return new Iterator<E>() {
+            int cursor = 0;
+            @Override
+            public boolean hasNext() {
+                return cursor < size;
+            }
+
+            @Override
+            public E next() {
+                if(!hasNext()){
+                    throw new NoSuchElementException();
+                }else {
+                    return (E)arr[cursor++];
+                }
+            }
+        };
+  }
+
+
 }
