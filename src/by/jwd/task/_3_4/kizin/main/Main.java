@@ -1,7 +1,7 @@
 package by.jwd.task._3_4.kizin.main;
 import by.jwd.task._3_4.kizin.binaryTree.Tree;
 import by.jwd.task._3_4.kizin.binaryTree.impl.BinaryTree;
-
+import by.jwd.task._3_4.kizin.list.MyList;
 
 
 public class Main {
@@ -10,22 +10,27 @@ public class Main {
 
 
 
-        BinaryTree<String > tree = new BinaryTree<>();
-
-        tree.insertElement("A");
+        Tree<String > tree = new BinaryTree<String>();
 
         tree.insertElement("B");
+
+        tree.insertElement("A");
 
         tree.insertElement("C");
 
         String search = new String("C");
 
 
-       String[] ss = tree.getAll();
+        MyList<String> myList = tree.getAll();
 
-       for(String s : ss){
-           System.out.println(s);
-       }
+        for(int i = 0; i < myList.size() ; i++){
+
+            System.out.println(myList.get(i));
+        }
+
+       
+
+
 
 
 

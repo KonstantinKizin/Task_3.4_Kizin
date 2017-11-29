@@ -1,16 +1,17 @@
 package by.jwd.task._3_4.kizin.binaryTree.impl;
 
 import by.jwd.task._3_4.kizin.binaryTree.Tree;
+import by.jwd.task._3_4.kizin.list.MyList;
+import by.jwd.task._3_4.kizin.list.impl.MyArrayList;
+
 
 public class BinaryTree<E> implements Tree<E> {
 
     private Node<E> root;
 
-    private int size;
+    private int size = 0;
 
-    private final Object[] sortedElements = new Object[size];
-
-    private int sortedElementsIndex;
+    private final MyList<E>  myArrayList = new MyArrayList<E>();
 
     @Override
     public void insertElement(Object key) {
@@ -34,9 +35,9 @@ public class BinaryTree<E> implements Tree<E> {
     }
 
     @Override
-    public <E1> E1[] getAll() {
+    public <E>  MyList<E> getAll() {
         inOrder(root);
-        return (E1[]) sortedElements;
+        return (MyList<E>) myArrayList;
     }
 
     @Override
@@ -123,8 +124,7 @@ public class BinaryTree<E> implements Tree<E> {
             return;
         }
         inOrder(node.leftChild);
-        sortedElements[sortedElementsIndex++] = node.value;
-        sortedElementsIndex++;
+        myArrayList.add((E)node.value);
         inOrder(node.rightChild);
 
     }

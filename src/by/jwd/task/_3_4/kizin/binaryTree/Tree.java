@@ -1,5 +1,7 @@
 package by.jwd.task._3_4.kizin.binaryTree;
 
+import by.jwd.task._3_4.kizin.list.MyList;
+
 public interface Tree<E> {
 
     void insertElement(Object key);
@@ -8,7 +10,7 @@ public interface Tree<E> {
 
     void removeElement(E e);
 
-   <E> E[] getAll();
+   <E> MyList<E> getAll();
 
    int size();
 
