@@ -6,8 +6,10 @@ public interface Tree<E> {
 
     <E> E getElement(E e);
 
-    boolean removeElement(E e);
+    void removeElement(E e);
 
    <E> E[] getAll();
+
+   int size();
 
 }

@@ -10,7 +10,7 @@ public class Main {
 
 
 
-        Tree<String > tree = new BinaryTree<>();
+        BinaryTree<String > tree = new BinaryTree<>();
 
         tree.insertElement("A");
 
@@ -18,9 +18,14 @@ public class Main {
 
         tree.insertElement("C");
 
+        String search = new String("C");
 
 
-        System.out.println(tree.getElement("AS"));
+       String[] ss = tree.getAll();
+
+       for(String s : ss){
+           System.out.println(s);
+       }
 
 
 

@@ -6,9 +6,16 @@ public class BinaryTree<E> implements Tree<E> {
 
     private Node<E> root;
 
+    private int size;
+
+    private final Object[] sortedElements = new Object[size];
+
+    private int sortedElementsIndex;
+
     @Override
     public void insertElement(Object key) {
        root = addNode(this.root, key);
+       size++;
     }
 
     @Override
@@ -21,19 +28,26 @@ public class BinaryTree<E> implements Tree<E> {
     }
 
     @Override
-    public boolean removeElement(E e) {
-        return false;
+    public void removeElement(E e) {
+        remove(e,root);
+        size--;
     }
 
     @Override
     public <E1> E1[] getAll() {
-        return null;
+        inOrder(root);
+        return (E1[]) sortedElements;
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
 
 
     private Node addNode(Node<E> node, Object key) {
         if(!(key instanceof Comparable)){
-            throw new UnsupportedOperationException("The value can't be inserted cause it doesn't implements comparable interface");
+            throw new UnsupportedOperationException("The value can't be insert cause it doesn't implements comparable interface");
         }
         if(node == null){
             node = new Node<>();
@@ -44,8 +58,9 @@ public class BinaryTree<E> implements Tree<E> {
             node.rightChild = addNode(node.rightChild , key);
         }
         return node;
-
     }
+
+
 
     private Node findNode(Node node , Object key){
 
@@ -61,6 +76,61 @@ public class BinaryTree<E> implements Tree<E> {
         }
         return node;
     }
+
+
+    private Node  findMin(Node node){
+        Node min = node;
+
+        if(min != null){
+            while (min.leftChild != null){
+                min = min.leftChild;
+            }
+        }
+        return min;
+    }
+
+    private Node remove(Object key , Node node){
+
+        if(node == null){
+            return null;
+        }
+
+        if(((Comparable)node.value).compareTo(key) > 0){
+            node.leftChild = remove(key,node.leftChild);
+        }else if(((Comparable)node.value).compareTo(key) < 0){
+            node.rightChild = remove(key,node.rightChild);
+        }else {
+            if(node.leftChild != null && node.rightChild != null){
+
+                Node minNodeFromRight  = findMin(node.rightChild);
+                node.value  = minNodeFromRight.value;
+                remove(minNodeFromRight.value , node.rightChild);
+
+            }else if(node.leftChild != null){
+                node = node.leftChild;
+            }else if(node.rightChild != null){
+                node = node.rightChild;
+            }else {
+                node = null;
+            }
+        }
+        return node;
+    }
+
+
+    private void inOrder(Node node){
+        if(node == null){
+            return;
+        }
+        inOrder(node.leftChild);
+        sortedElements[sortedElementsIndex++] = node.value;
+        sortedElementsIndex++;
+        inOrder(node.rightChild);
+
+    }
+
+
+
 
 
 
