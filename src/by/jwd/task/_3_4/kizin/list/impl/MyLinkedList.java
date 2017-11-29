@@ -2,6 +2,7 @@ package by.jwd.task._3_4.kizin.list.impl;
 import by.jwd.task._3_4.kizin.list.MyList;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class MyLinkedList<E> implements MyList<E>{
 
@@ -69,14 +70,39 @@ public class MyLinkedList<E> implements MyList<E>{
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Iterator<E>() {
+
+            private Node<E> currentNode = null;
+
+            @Override
+            public boolean hasNext() {
+                return currentNode != last;
+            }
+
+            @Override
+            public E next() {
+                if (currentNode == null) {
+                    currentNode = first;
+                    return currentNode.value;
+                }
+                if (currentNode.next == null) {
+                    throw new NoSuchElementException();
+                }
+                currentNode = currentNode.next;
+                return currentNode.value;
+            }
+        };
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-
         loopThNodes(sb,first);
 
         if(this.size == 0){
@@ -88,7 +114,6 @@ public class MyLinkedList<E> implements MyList<E>{
             sb = null;
             return toString;
         }
-
     }
 
 

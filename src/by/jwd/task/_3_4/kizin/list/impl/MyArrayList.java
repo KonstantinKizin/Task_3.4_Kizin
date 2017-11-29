@@ -102,5 +102,10 @@ public class MyArrayList<E> implements MyList<E> {
         };
   }
 
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
 
 }

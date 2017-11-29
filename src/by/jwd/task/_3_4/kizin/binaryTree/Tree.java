@@ -10,7 +10,7 @@ public interface Tree<E> {
 
     void removeElement(E e);
 
-   <E> MyList<E> getAll();
+   <E> MyList<E> getSortedElements();
 
    int size();
 

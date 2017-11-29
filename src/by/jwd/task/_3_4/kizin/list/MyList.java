@@ -14,5 +14,7 @@ public interface MyList<E> {
 
     Iterator<E> iterator();
 
+    boolean isEmpty();
+
 
 }

@@ -35,7 +35,7 @@ public class BinaryTree<E> implements Tree<E> {
     }
 
     @Override
-    public <E>  MyList<E> getAll() {
+    public <E>  MyList<E> getSortedElements() {
         inOrder(root);
         return (MyList<E>) myArrayList;
     }
@@ -128,12 +128,6 @@ public class BinaryTree<E> implements Tree<E> {
         inOrder(node.rightChild);
 
     }
-
-
-
-
-
-
 
 }
 
