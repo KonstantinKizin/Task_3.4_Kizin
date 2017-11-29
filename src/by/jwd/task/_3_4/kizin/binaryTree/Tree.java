@@ -4,7 +4,7 @@ import by.jwd.task._3_4.kizin.list.MyList;
 
 public interface Tree<E> {
 
-    void insertElement(Object key);
+    void insertElement(E key);
 
     <E> E getElement(E e);
 
