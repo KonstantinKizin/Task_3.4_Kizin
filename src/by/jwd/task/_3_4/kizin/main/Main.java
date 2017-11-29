@@ -10,6 +10,18 @@ public class Main {
 
 
 
+        Tree<String > tree = new BinaryTree<>();
+
+        tree.insertElement("A");
+
+        tree.insertElement("B");
+
+        tree.insertElement("C");
+
+
+
+        System.out.println(tree.getElement("AS"));
+
 
 
 

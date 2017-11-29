@@ -13,8 +13,11 @@ public class BinaryTree<E> implements Tree<E> {
 
     @Override
     public <E> E getElement(E e1) {
-
-        return null;
+        if(findNode(root,e1) == null){
+            return null;
+        }else {
+            return (E)findNode(root,e1).value;
+        }
     }
 
     @Override
@@ -42,6 +45,21 @@ public class BinaryTree<E> implements Tree<E> {
         }
         return node;
 
+    }
+
+    private Node findNode(Node node , Object key){
+
+        if(node == null){
+            return null;
+        }
+        if(node.value.equals(key)){
+            return node;
+        }else if(((Comparable)node.value).compareTo(key) > 0){
+            return findNode(node.leftChild , key);
+        }else if(((Comparable)node.value).compareTo(key) < 0){
+            return findNode(node.rightChild,key);
+        }
+        return node;
     }
 
 
