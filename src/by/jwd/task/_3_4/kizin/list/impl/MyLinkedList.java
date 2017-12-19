@@ -21,15 +21,15 @@ public class MyLinkedList<E> implements MyList<E>{
         }else if(this.last == null){
             this.last = new Node<>();
             this.last.value = t;
-            this.first.next = this.last;
-            this.last.index += 1;
+            this.first.setNext(this.last);
+            this.last.getIndex(last.getIndex() + 1);
         } else {
             Node<E> node = new Node<>();
-            node.value = t;
-            node.back = this.last;
-            this.last.next = node;
+            node.setValue(t);
+            node.setBack(this.last);
+            this.last.setNext(node);
             this.last = node;
-            node.index = node.back.index + 1;
+            node.setIndex(node.getBack().setIndex(node.getBack().getIndex() + 1));
         }
         return true;
     }
@@ -46,17 +46,17 @@ public class MyLinkedList<E> implements MyList<E>{
         Node<E> previous = null;
 
         while (current != null) {
-            if (current.value.equals(t)) {
+            if (current.getValue().equals(t)) {
                 if (previous == null) {
-                    first = current.next;
+                    first = current.getNext();
                 }
                 else {
-                    previous.next = current.next;
+                    previous.setNext(current.getNext());
                 }
                 return true;
             } else {
                 previous = current;
-                current = current.next;
+                current = current.getNext();
             }
         }
 
@@ -83,13 +83,13 @@ public class MyLinkedList<E> implements MyList<E>{
             public E next() {
                 if (currentNode == null) {
                     currentNode = first;
-                    return currentNode.value;
+                    return currentNode.getValue;
                 }
                 if (currentNode.next == null) {
                     throw new NoSuchElementException();
                 }
-                currentNode = currentNode.next;
-                return currentNode.value;
+                currentNode = currentNode.getNext();
+                return currentNode.getValue();
             }
         };
     }
@@ -121,10 +121,10 @@ public class MyLinkedList<E> implements MyList<E>{
         if(node == null){
             return null;
         }else {
-            if(node.index == index){
+            if(node.getNndex() == index){
                 return (E) node.value;
             }else {
-                return findNodeByIndex(node.next , index);
+                return findNodeByIndex(node.getNext() , index);
             }
         }
     }
