@@ -1,7 +1,7 @@
 package by.jwd.task._3_4.kizin.list.impl;
 
 class Node<E> {
-    //without access modifier cause we use the class only inside the package.
+    
     private Node next;
     private Node back;
     private E value;
